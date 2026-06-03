@@ -1,0 +1,219 @@
+/* ============================================================
+   MUSEUM GALLERY HALLWAY — projects.html
+   Horizontal scroll-driven gallery. Olive wall + wood floor.
+   ============================================================ */
+
+.gallery-scroll-container { position: relative; }
+.gallery-sticky { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.gallery-scene {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 36%, rgba(255,245,210,0.06) 0%, transparent 55%),
+    radial-gradient(ellipse 85% 65% at 50% 40%, #45492f 0%, #3a3d28 30%, #2d301d 60%, #1c1e12 100%);
+  overflow: hidden;
+}
+/* matte plaster grain on the wall */
+.gallery-scene::before {
+  content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    radial-gradient(circle at 18% 22%, rgba(255,255,255,0.025) 1px, transparent 1px),
+    radial-gradient(circle at 78% 68%, rgba(0,0,0,0.06) 1px, transparent 1px);
+  background-size: 46px 46px, 58px 58px;
+  opacity: 0.7;
+}
+
+/* ceiling shadow */
+.gallery-ceiling {
+  position: absolute; top: 0; left: 0; right: 0; height: 12%;
+  background: linear-gradient(180deg, rgba(0,0,0,0.7) 0%, transparent 100%);
+  pointer-events: none; z-index: 4;
+}
+/* floor strip */
+.gallery-floor {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 16%;
+  background:
+    linear-gradient(180deg, #2a1a0e 0%, #3d2410 42%, #2a1a0e 100%),
+    repeating-linear-gradient(90deg, transparent 0, transparent 44px, rgba(0,0,0,0.10) 44px, rgba(0,0,0,0.10) 45px);
+  background-blend-mode: normal;
+  border-top: 2px solid #1a0f07;
+  box-shadow: inset 0 7px 22px rgba(0,0,0,0.6);
+  z-index: 3;
+}
+
+/* the moving track */
+.gallery-track {
+  position: absolute; top: 0; bottom: 0; left: 0; width: max-content;
+  display: flex; align-items: center; gap: 9vw;
+  padding: 0 12vw; will-change: transform; z-index: 2;
+}
+
+/* each frame unit */
+.g-frame {
+  position: relative; flex: 0 0 auto;
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; text-decoration: none;
+  transform: translateY(0); transition: transform 0.5s cubic-bezier(0.16,1,0.3,1);
+}
+.g-frame.raise-1 { margin-bottom: 7vh; }
+.g-frame.raise-2 { margin-bottom: 13vh; }
+.g-frame.raise-3 { margin-bottom: 3vh; }
+.g-frame:hover { transform: translateY(-12px); }
+
+/* spotlight cone above each frame */
+.g-spot {
+  position: absolute; top: -38%; left: 50%; transform: translateX(-50%);
+  width: 320px; height: 420px;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,240,200,0.07) 0%, transparent 70%);
+  pointer-events: none; opacity: 0.55; transition: opacity 0.4s ease;
+}
+.g-frame:hover .g-spot { opacity: 1; }
+
+/* 3-layer frame: mount > border > art — realistic ornate molding */
+.g-mount {
+  position: relative;
+  background:
+    linear-gradient(135deg, #2a2a2a 0%, #161616 18%, #050505 50%, #1a1a1a 82%, #000 100%);
+  padding: 16px;
+  border-radius: 3px;
+  box-shadow:
+    14px 22px 50px rgba(0,0,0,0.6),
+    0 30px 70px rgba(0,0,0,0.7),
+    inset 0 2px 2px rgba(255,255,255,0.14),
+    inset 0 -3px 4px rgba(0,0,0,0.9),
+    inset 2px 0 3px rgba(255,255,255,0.05),
+    inset -2px 0 3px rgba(0,0,0,0.7);
+}
+/* outer bevel highlight ridge */
+.g-mount::before {
+  content: ''; position: absolute; inset: 6px; border-radius: 2px; pointer-events: none;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.18), inset 0 -2px 3px rgba(0,0,0,0.85);
+}
+.g-border { position: relative; padding: 5px; border-radius: 1px; }
+/* gold liner: thin gilt fillet between black molding and art */
+.g-border.gold {
+  padding: 7px;
+  background: linear-gradient(135deg, #6b4f0a 0%, #c8971a 22%, #f5d877 42%, #e8c04a 55%, #b9881a 78%, #6b4f0a 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.5), inset 0 -1px 2px rgba(0,0,0,0.6);
+}
+.g-border.dark {
+  background: linear-gradient(135deg, #333 0%, #0c0c0c 50%, #222 100%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.08), inset 0 -1px 2px rgba(0,0,0,0.8);
+}
+.g-art {
+  position: relative; overflow: hidden; background: var(--placeholder);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.55);
+}
+.g-art .img-placeholder { min-height: 0; height: 100%; border: 1.5px dashed rgba(139,157,112,0.35); }
+.g-art .img-placeholder .ph-label { font-size: 10.5px; }
+
+/* ============================================================
+   NINE DISTINCT RENAISSANCE / BAROQUE FRAME FINISHES
+   each gallery frame gets its own gilt/ornate treatment
+   ============================================================ */
+.gallery-track > .g-frame:nth-child(1) .g-border { padding: 13px; background: linear-gradient(135deg,#6b4f0a,#caa029 22%,#f6dd86 42%,#e7c052 55%,#a8791a 78%,#5e4408); }
+.gallery-track > .g-frame:nth-child(2) .g-border { padding: 16px; background: linear-gradient(135deg,#2a1d0a,#8a6a2a 30%,#caa84e 50%,#7a5a22 72%,#1e1407); }
+.gallery-track > .g-frame:nth-child(3) .g-border { padding: 10px; background: linear-gradient(135deg,#3a3a3a,#0c0c0c 50%,#2a2a2a); box-shadow: inset 0 0 0 3px #b89542; }
+.gallery-track > .g-frame:nth-child(4) .g-border { padding: 15px; background: linear-gradient(135deg,#5a5444,#cfc6a4 45%,#efe8cc 55%,#9a9078 75%,#46412f); }
+.gallery-track > .g-frame:nth-child(5) .g-border { padding: 14px; background: linear-gradient(135deg,#2c1a0d,#6e4a24 35%,#b98a4a 52%,#5c3a1c 72%,#1a0f06); }
+.gallery-track > .g-frame:nth-child(6) .g-border { padding: 16px; background: linear-gradient(135deg,#4a0f0a,#9a3a22 30%,#e7b85c 52%,#8a2e1c 74%,#3a0c08); box-shadow: inset 0 0 0 2px #e7b85c; }
+.gallery-track > .g-frame:nth-child(7) .g-border { padding: 13px; background: linear-gradient(135deg,#5a5d63,#c9ccd2 45%,#eef0f3 55%,#9a9da3 75%,#42454b); }
+.gallery-track > .g-frame:nth-child(8) .g-border { padding: 15px; background: linear-gradient(135deg,#22321f,#5c7349 38%,#9bb07e 54%,#46583a 74%,#1a2616); box-shadow: inset 0 0 0 2px #d8c98a; }
+.gallery-track > .g-frame:nth-child(9) .g-border { padding: 18px; background: linear-gradient(135deg,#6b4f0a,#c8871a 20%,#f5c842 50%,#c8871a 80%,#6b4f0a); }
+/* deeper carved-bevel ridge inside every frame's gilt */
+.gallery-track > .g-frame .g-border { position: relative; }
+.gallery-track > .g-frame .g-border::after {
+  content: ''; position: absolute; inset: 3px; pointer-events: none;
+  box-shadow: inset 0 1px 1px rgba(255,255,255,0.4), inset 0 -1px 2px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(0,0,0,0.25);
+}
+
+/* frame sizes (portrait / landscape mix) */
+.size-p1 .g-art { width: 320px; height: 410px; }
+.size-l1 .g-art { width: 440px; height: 310px; }
+.size-p2 .g-art { width: 350px; height: 440px; }
+.size-l2 .g-art { width: 470px; height: 320px; }
+.size-p3 .g-art { width: 300px; height: 380px; }
+
+/* caption under frame */
+.g-caption { text-align: center; margin-top: 26px; max-width: 420px; }
+.g-caption h3 { font-family: var(--serif); font-size: clamp(17px,1.5vw,22px); text-transform: uppercase; color: #e7e0d0; letter-spacing: 0.01em; line-height: 1.15; }
+.g-caption .artist { font-family: var(--serif); font-style: italic; font-size: 15px; color: #b9b09c; margin-top: 4px; }
+.g-view {
+  display: inline-flex; align-items: center; gap: 9px; margin-top: 16px;
+  background: #ece7da; color: #1a1916; border: 1px solid #ece7da;
+  font-family: var(--sans); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 11px 20px; transition: background 0.3s ease;
+}
+.g-view .arrow-sq { display: inline-flex; width: 18px; height: 18px; align-items: center; justify-content: center; background: #1a1916; color: #ece7da; font-size: 11px; }
+.g-frame:hover .g-view { background: #fff; }
+
+/* ---- final CTA frame ---- */
+.g-cta .g-art {
+  width: 360px; height: 460px;
+  background: linear-gradient(160deg, #2a2d1c 0%, #1e2013 50%, #1a1c10 100%);
+  border: none; padding: 0;
+}
+.g-cta-canvas { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.g-cta-top { position: absolute; top: 44px; left: 34px; right: 34px; font-family: var(--sans); font-size: 26px; font-weight: 300; letter-spacing: 0.03em; color: var(--text-cream); line-height: 1.3; text-transform: uppercase; }
+.g-cta-bottom { position: absolute; bottom: 44px; left: 34px; right: 34px; text-align: center; font-family: var(--serif); font-style: italic; font-size: 22px; color: #e8dcc8; letter-spacing: 0.04em; }
+.g-cta-spark { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); animation: spark-rot 20s linear infinite; }
+.g-cta:hover .g-cta-spark { animation-duration: 4s; }
+.g-cta-glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(232,220,200,0.08) 0%, transparent 70%); pointer-events: none; animation: spark-pulse 3s ease-in-out infinite; }
+@keyframes spark-rot { to { transform: translate(-50%,-50%) rotate(360deg); } }
+@keyframes spark-pulse { 0%,100%{ opacity:0.4; } 50%{ opacity:0.85; } }
+.g-cta:hover .g-border.gold { box-shadow: 0 0 30px rgba(200,150,30,0.3), 0 0 60px rgba(200,150,30,0.15); }
+
+/* gallery intro label (left, fades on scroll) */
+.gallery-label { position: absolute; top: 16%; left: 6%; z-index: 5; max-width: 440px; pointer-events: none; }
+.gallery-label h1 { font-family: var(--serif); font-size: clamp(38px,5vw,66px); font-weight: 700; text-transform: uppercase; color: var(--text-cream); line-height: 1.04; letter-spacing: -0.02em; }
+.gallery-label h1 .ital { font-style: italic; font-weight: 400; text-transform: none; }
+.gallery-label p { font-size: 15px; font-weight: 300; color: #cfc8b8; margin-top: 16px; line-height: 1.6; max-width: 380px; }
+
+/* scroll hint + progress circle (bottom-right) */
+.gallery-hint { position: absolute; bottom: 7%; right: 5%; z-index: 6; display: flex; align-items: center; gap: 16px; }
+.gallery-hint span { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #cfc8b8; transition: opacity 0.4s ease; }
+.gallery-progress { position: relative; width: 44px; height: 44px; }
+.gallery-progress svg { width: 44px; height: 44px; transform: rotate(-90deg); }
+.gallery-progress .bg { fill: none; stroke: rgba(242,239,230,0.22); stroke-width: 1.5; }
+.gallery-progress .fg { fill: none; stroke: #ece7da; stroke-width: 1.5; stroke-linecap: round; transition: stroke-dashoffset 0.1s linear; }
+
+/* ============================================================
+   ORNATE BAROQUE GILT CORNER FLOURISHES — gold frames only
+   4 gilt corner ornaments on the black molding of gold frames,
+   rotated per corner, fading in after the frame reveals.
+   ============================================================ */
+.g-frame:has(.g-border.gold) .g-mount {
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23e3bd57' transform='rotate(0 20 20)'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%238a6a1e'/%3E%3Cpath d='M9 13.5 Q11 26 23 28 Q14 24 12.5 13.5 Z'/%3E%3Cpath d='M13.5 9 Q26 11 28 23 Q24 14 13.5 12.5 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23e3bd57' transform='rotate(90 20 20)'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%238a6a1e'/%3E%3Cpath d='M9 13.5 Q11 26 23 28 Q14 24 12.5 13.5 Z'/%3E%3Cpath d='M13.5 9 Q26 11 28 23 Q24 14 13.5 12.5 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23e3bd57' transform='rotate(270 20 20)'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%238a6a1e'/%3E%3Cpath d='M9 13.5 Q11 26 23 28 Q14 24 12.5 13.5 Z'/%3E%3Cpath d='M13.5 9 Q26 11 28 23 Q24 14 13.5 12.5 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cg fill='%23e3bd57' transform='rotate(180 20 20)'%3E%3Ccircle cx='9' cy='9' r='4.5'/%3E%3Ccircle cx='9' cy='9' r='2' fill='%238a6a1e'/%3E%3Cpath d='M9 13.5 Q11 26 23 28 Q14 24 12.5 13.5 Z'/%3E%3Cpath d='M13.5 9 Q26 11 28 23 Q24 14 13.5 12.5 Z'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg, #2a2a2a 0%, #161616 18%, #050505 50%, #1a1a1a 82%, #000 100%);
+  background-position: 3px 3px, calc(100% - 3px) 3px, 3px calc(100% - 3px), calc(100% - 3px) calc(100% - 3px), center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  background-size: 40px 40px, 40px 40px, 40px 40px, 40px 40px, cover;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.5));
+}
+.g-frame:has(.g-border.gold):hover .g-mount {
+  box-shadow:
+    14px 22px 50px rgba(0,0,0,0.6),
+    0 30px 70px rgba(0,0,0,0.7),
+    0 0 26px rgba(212,175,55,0.28),
+    inset 0 2px 2px rgba(255,255,255,0.18),
+    inset 0 -3px 4px rgba(0,0,0,0.9);
+}
+
+/* mobile fallback: vertical stack */
+@media (max-width: 768px) {
+  .gallery-scroll-container { height: auto !important; }
+  .gallery-sticky { position: relative; height: auto; }
+  .gallery-scene { position: relative; min-height: auto; padding: 110px 0 80px; }
+  .gallery-track { position: relative; flex-direction: column; gap: 70px; padding: 0 5vw; transform: none !important; }
+  .g-frame { margin-bottom: 0 !important; }
+  .g-spot { display: none; }
+  .gallery-label { position: relative; top: auto; left: auto; padding: 0 6vw 50px; max-width: none; }
+  .gallery-floor, .gallery-ceiling { display: none; }
+  .gallery-hint { display: none; }
+  .size-p1 .g-art, .size-p2 .g-art, .size-p3 .g-art, .size-l1 .g-art, .size-l2 .g-art { width: min(80vw, 360px); height: auto; aspect-ratio: 3/4; }
+  .size-l1 .g-art, .size-l2 .g-art { aspect-ratio: 4/3; }
+}
