@@ -258,6 +258,16 @@ def main():
         page = jsonld_re.sub(lambda m, p=p: build_jsonld(p), page, count=1)
         page = page.replace(OLD_DESC, p["desc"])
         page = page.replace(OLD_OGTITLE, p["title"])
+
+        # Guard: check for unresolved placeholders
+        bracket_pattern = re.compile(r'\[([^\]]+)\]')
+        unresolved = bracket_pattern.findall(page)
+        if unresolved:
+            print("ERROR: unresolved placeholders in %s:" % p["slug"])
+            for placeholder in set(unresolved):
+                print("  - [%s]" % placeholder)
+            raise ValueError("Build failed: unresolved placeholders detected")
+
         out = os.path.join(OUT_DIR, p["slug"] + ".html")
         with open(out, "w", encoding="utf-8") as f:
             f.write(page)
