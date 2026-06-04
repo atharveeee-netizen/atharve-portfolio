@@ -29,12 +29,12 @@
      Prevent FOUC for GSAP text reveal
      -------------------------------------------- */
 
-  /* Alleen verbergen als JS actief is */
+  /* Hide if JS is enabled (FOUC prevention) */
   html.js [data-gsap-reveal] {
     visibility: hidden;
   }
 
-  /* Zorgt dat animatie vloeiend blijft */
+  /* Keep animation smooth *//
   html.js [data-gsap-reveal] {
     will-change: transform, opacity;
     backface-visibility: hidden;
@@ -47,7 +47,7 @@
     overflow: hidden;
   }
 
-  /* Optioneel: voorkomt mini flash bij font swap */
+  /* Prevent font swap flash *//
   html.js h1,
   html.js h2,
   html.js h3,
@@ -1143,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   // Pagina's waar ScrollSmoother NIET mag worden ingeladen
-  const excludePages = ['/sell-your-painting', '/contact'];
+  const excludePages = ['/collab-wizard', '/contact'];
 
   if (!excludePages.includes(window.location.pathname)) {
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
