@@ -44,6 +44,8 @@ SCOPED_CSS = """
 .project-detail .pd-btn:hover{border-color:rgba(212,198,185,.9)}
 .project-detail .pd-btn-primary{background:#7a8b69;border-color:#7a8b69;color:#171c1c}
 .project-detail .pd-btn-primary:hover{background:#8a9b79;border-color:#8a9b79}
+.project-detail .pd-quote{margin:3.25rem 0 0;font-family:ivypresto-headline,"Playfair Display",serif;font-style:italic;font-size:1.7em;line-height:1.3;opacity:.9;max-width:26ch}
+.project-detail .pd-quote .cite{display:block;margin-top:1em;font-family:"Basic Grotesque",Arial,sans-serif;font-style:normal;font-size:.38em;letter-spacing:.2em;text-transform:uppercase;opacity:.45}
 @media screen and (max-width:479px){
 .project-detail .pd-meta-line{flex-direction:column;gap:.4rem}
 .project-detail .pd-label{flex:none}
@@ -53,6 +55,18 @@ SCOPED_CSS = """
 """
 
 IMG = "uploads/draw-1b950292-d605-4273-a1df-5d8fb696315b.png"
+
+# Literary epigraph per project — chosen to DESCRIBE the build, not comment on it.
+QUOTES = {
+    "f450-multirotor-drone": ("One must have chaos within oneself to give birth to a dancing star.", "Nietzsche"),
+    "pcb-design": ("I can't go on. I'll go on.", "Beckett, The Unnamable"),
+    "face-detection-drone": ("When you gaze into the abyss, the abyss gazes back.", "Nietzsche"),
+    "rural-edtech-platform": ("Ever tried. Ever failed. No matter. Fail better.", "Beckett, Worstward Ho"),
+    "cryogenic-electronics": ("The darker the night, the brighter the stars.", "Dostoevsky"),
+    "autonomous-tracking": ("The trigger gave.", "Camus, The Stranger"),
+    "embedded-flight-controller": ("I am a cage in search of a bird.", "Kafka"),
+    "computer-vision-pipeline": ("We always find something to give us the impression we exist.", "Beckett, Waiting for Godot"),
+}
 
 PROJECTS = [
     dict(
@@ -197,6 +211,11 @@ def build_section(p):
         )
         meta_html = '<div class="pd-meta">%s</div>' % rows
 
+    quote_html = ""
+    q = QUOTES.get(p["slug"])
+    if q:
+        quote_html = '<div class="pd-quote">%s<span class="cite">%s</span></div>' % (q[0], q[1])
+
     return (
         SCOPED_CSS
         + '<section class="section_intro project-detail" nav-scroll-trigger="">'
@@ -209,6 +228,7 @@ def build_section(p):
         + '<p class="pd-hook"><span class="ital">%s</span></p>' % p["hook"]
         + '<div class="pd-body">%s</div>' % body_html
         + meta_html
+        + quote_html
         + '<div class="pd-cta">'
         + '<a class="pd-btn" href="../projects.html">← All projects</a>'
         + '<a class="pd-btn pd-btn-primary" href="../collab-wizard.html">Request Collab</a>'

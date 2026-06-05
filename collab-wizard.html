@@ -490,6 +490,124 @@ body:has( [data-cursor]:hover ) .cursor{ opacity: 1; }
     padding-right: 1.5rem !important;
   }
 </style>
+<style id="collab-intro-fix">.f-form-steps-item.is-first .f-steps-bg{opacity:0}.f-form-steps-item.is-first .f-steps-header{padding-top:4em}.f-form-steps-item.is-first .button-group{margin-top:.5em}.f-form-steps-item.is-first .aspect-ratio-1-1{max-width:480px}</style><style id="mobile-nav-overlay">
+  /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */
+  @media screen and (max-width: 991px) {
+    /* Hide the cramped inline center menu + the in-bar CTA: bar = logo + hamburger */
+    .nav .navbar_col.is-center { display: none !important; }
+    .nav .navbar_col.is-right .navbar-cta { display: none !important; }
+
+    /* Show the hamburger */
+    .nav .nav-trigger {
+      display: flex !important;
+      gap: 5px !important;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .nav .nav-trigger .nt_icon-line {
+      width: 22px !important;
+      height: 2px !important;
+      background-color: var(--_colors---swatch--beige) !important;
+      transition: transform .35s cubic-bezier(.16,1,.3,1), opacity .25s ease !important;
+    }
+    /* Morph hamburger -> X when open */
+    .nav.nav-open .nt_icon-line.is-01 { transform: translateY(3.5px) rotate(45deg) !important; }
+    .nav.nav-open .nt_icon-line.is-02 { transform: translateY(-3.5px) rotate(-45deg) !important; }
+
+    /* Full-screen overlay menu, controlled by .nav-open (NOT Webflow ix2) */
+    .nav .navmenu-wrapper {
+      display: flex !important;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-0.75em);
+      pointer-events: none;
+      transition: opacity .4s cubic-bezier(.16,1,.3,1),
+                  transform .4s cubic-bezier(.16,1,.3,1),
+                  visibility .4s;
+    }
+    .nav.nav-open .navmenu-wrapper {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: translateY(0) !important;
+      pointer-events: auto !important;
+    }
+
+    /* Webflow ix2 leaves the inner panel at display:none + translateY(-100%)
+       (its closed state). Force it open via OUR class, overriding ix2's inline. */
+    .nav.nav-open .navmenu {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    /* Larger, prominent stacked menu links.
+       NB: the desktop `navbar-flex-override` forces is-navlink height:100% !important,
+       which blows each menu row up to ~420px here — pin it back to auto.
+       text-transform keeps the span-less "About" consistent with its siblings. */
+    .nav .navmenu_list .btn-animate-chars.is-navlink {
+      height: auto !important;
+      font-size: 1.5rem !important;
+      padding-top: 1.05em !important;
+      padding-bottom: 1.05em !important;
+      letter-spacing: -0.02em !important;
+      align-items: center !important;
+      text-transform: uppercase !important;
+    }
+    .nav .navmenu_list .btn-animate-chars.is-navlink [data-button-animate-chars] {
+      height: 1.4em !important;
+    }
+
+    /* Action buttons: full-width, stacked, properly filled (no GSAP fill here) */
+    .nav .navmenu_button-group {
+      grid-template-columns: 1fr !important;
+      grid-row-gap: 0.75em !important;
+      grid-column-gap: 0 !important;
+    }
+    .nav .navmenu_button-group > * { width: 100% !important; }
+    .nav .navmenu_button-group .btn-animate-chars {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      width: 100% !important;
+      min-height: 52px !important;
+      border-radius: 6px !important;
+      font-size: 1rem !important;
+      letter-spacing: 0.01em !important;
+    }
+    /* Request Collab -> filled brand green */
+    .nav .navmenu_button-item .btn-animate-chars {
+      background-color: var(--_colors---swatch--green) !important;
+      color: var(--_colors---swatch--black) !important;
+      border: none !important;
+    }
+    /* WhatsApp -> outline */
+    .nav .navmenu_button-group > .btn-animate-chars.outline {
+      border: 1px solid var(--_colors---swatch--grey) !important;
+      color: var(--_colors---swatch--beige) !important;
+    }
+
+    /* Drop leftover clone cruft ("Visit dutch site" locale buttons) from the menu */
+    .nav .navmenu .w-locales-list { display: none !important; }
+  }
+
+  /* Lock background scroll while the menu is open */
+  html.menu-open, body.menu-open { overflow: hidden !important; }
+</style>
+<style id="popup-whatsapp-fix">
+  /* Bright, recognizable WhatsApp button for the floating popup trigger. */
+  .popup-whatsapp {
+    background-color: #25D366 !important;
+    background-image: url("assets/img/whatsapp-logo.png") !important;
+    background-size: 54% !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    border-radius: 8px !important;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .popup-whatsapp .icon-button { display: none !important; }
+</style>
 </head><body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe height="0" src="https://www.googletagmanager.com/ns.html?id=GTM-NL2FKMFJ" style="display:none;visibility:hidden" width="0"></iframe></noscript>
@@ -966,7 +1084,7 @@ input,select,textarea {
 </svg>
 </a>
 </div>
-</div><div class="navbar_col is-center w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b"><div class="navbar_menu"><a class="btn-animate-chars is-navlink w-inline-block" href="how-it-works.html"><div class="navlink_globe-item"></div><span class="navbar-link_text" data-button-animate-chars="">How it works</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="about.html"><span class="navbar-link_text" data-button-animate-chars="">About</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="projects.html"><span class="navbar-link_text" data-button-animate-chars="">Projects</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="labtour.html"><span class="navbar-link_text" data-button-animate-chars="">Lab Tour</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="contact.html"><div class="navlink_globe-item"></div><span class="navbar-link_text" data-button-animate-chars="">Contact</span></a></div></div><div class="navbar_col is-right"><div class="navbar-cta w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b"><a aria-current="page" aria-label="staggering button" class="btn-animate-chars w-variant-2e332d1d-6c07-3699-03b8-424432658809 w-inline-block w--current [is-icon]" data-wf--button--variant="green" href="collab-wizard.html"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text w-variant-2e332d1d-6c07-3699-03b8-424432658809" data-button-animate-chars="">Request Collab</span><div class="button-icon w-variant-2e332d1d-6c07-3699-03b8-424432658809 {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a></div><a class="nav-trigger w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b w-inline-block" href="#"><div class="nt_icon-line is-01"></div><div class="nt_icon-line is-02"></div></a><div class="data-prev-page w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b" data-prev-page=""><a aria-label="staggering button" class="btn-animate-chars w-variant-455285b7-ab39-c42a-5cd2-f0df98e3d630 w-inline-block [is-icon]" data-wf--button--variant="outline-light" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Close</span></a></div></div></div></div></nav><div class="whatsapp-modal" data-whatsapp-modal="https://wa.me/919983974154" data-whatsapp-modal-status="not-active"><div class="whatsapp-modal__dark" data-whatsapp-modal-toggle=""></div><div class="whatsapp-modal__card"><div class="whatsapp-modal__qr-canvas" data-whatsapp-modal-qr-canvas=""></div><div class="whatsapp-modal__text"><h2 class="whatsapp-modal__h2">WhatsApp us</h2><p class="whatsapp-modal__p">Scan the QR code to chat with me on WhatsApp.</p></div><a aria-label="staggering button" class="btn-animate-chars green-10 w-inline-block [is-icon]" data-whatsapp-modal-link="" href="#"><div class="btn-animate-chars__bg green-11"></div><span class="btn-animate-chars__text green-12" data-button-animate-chars="">or chat via desktop</span><div class="button-icon green-13 {rotation-90}"><div class="button-icon_track green-14"><div class="button-icon_arrow green-15"><svg class="icon-10px green-18" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow green-15 is-1 green-17"><svg class="icon-10px green-18" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a><div class="whatsapp-modal__close" data-whatsapp-modal-toggle=""><div class="whatsapp-modal__close-bar"></div><div class="whatsapp-modal__close-bar is--duplicate"></div></div></div></div><div class="cursor"><p class="cursor-paragraph">Learn more</p></div><div class="main-wrapper" id="smooth-content"><header class="section_multistep-form" data-gsap-text="false" id="section_hero"><div class="w-layout-blockcontainer container-col-12 w-container"><div class="css-prefill-form w-embed"><style>
+</div><div class="navbar_col is-center w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b"><div class="navbar_menu"><a class="btn-animate-chars is-navlink w-inline-block" href="how-it-works.html"><div class="navlink_globe-item"></div><span class="navbar-link_text" data-button-animate-chars="">How it works</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="about.html"><span class="navbar-link_text" data-button-animate-chars="">About</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="projects.html"><span class="navbar-link_text" data-button-animate-chars="">Projects</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="labtour.html"><span class="navbar-link_text" data-button-animate-chars="">Lab Tour</span></a><a class="btn-animate-chars is-navlink w-inline-block" href="contact.html"><div class="navlink_globe-item"></div><span class="navbar-link_text" data-button-animate-chars="">Contact</span></a></div></div><div class="navbar_col is-right"><div class="navbar-cta w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b"><a aria-current="page" aria-label="staggering button" class="btn-animate-chars w-variant-2e332d1d-6c07-3699-03b8-424432658809 w-inline-block w--current [is-icon]" data-wf--button--variant="green" href="collab-wizard.html"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text w-variant-2e332d1d-6c07-3699-03b8-424432658809" data-button-animate-chars="">Request Collab</span><div class="button-icon w-variant-2e332d1d-6c07-3699-03b8-424432658809 {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a></div><a class="nav-trigger w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b w-inline-block" href="#"><div class="nt_icon-line is-01"></div><div class="nt_icon-line is-02"></div></a><div class="data-prev-page w-variant-84a9722f-f224-9815-0958-06a9b13f6b5b" data-prev-page=""><a aria-label="staggering button" class="btn-animate-chars w-variant-455285b7-ab39-c42a-5cd2-f0df98e3d630 w-inline-block [is-icon]" data-wf--button--variant="outline-light" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Close</span></a></div></div></div></div></nav><div class="whatsapp-modal" data-whatsapp-modal="https://wa.me/919983974154" data-whatsapp-modal-status="not-active"><div class="whatsapp-modal__dark" data-whatsapp-modal-toggle=""></div><div class="whatsapp-modal__card"><div class="whatsapp-modal__qr-canvas" data-whatsapp-modal-qr-canvas=""></div><div class="whatsapp-modal__text"><h2 class="whatsapp-modal__h2">WhatsApp us</h2><p class="whatsapp-modal__p">Scan the QR code to chat with me on WhatsApp.</p></div><a aria-label="staggering button" class="btn-animate-chars green-10 w-inline-block [is-icon]" data-whatsapp-modal-link="" href="https://wa.me/919983974154" target="_blank" rel="noopener"><div class="btn-animate-chars__bg green-11"></div><span class="btn-animate-chars__text green-12" data-button-animate-chars="">or chat via desktop</span><div class="button-icon green-13 {rotation-90}"><div class="button-icon_track green-14"><div class="button-icon_arrow green-15"><svg class="icon-10px green-18" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow green-15 is-1 green-17"><svg class="icon-10px green-18" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a><div class="whatsapp-modal__close" data-whatsapp-modal-toggle=""><div class="whatsapp-modal__close-bar"></div><div class="whatsapp-modal__close-bar is--duplicate"></div></div></div></div><div class="cursor"><p class="cursor-paragraph">Learn more</p></div><div class="main-wrapper" id="smooth-content"><header class="section_multistep-form" data-gsap-text="false" id="section_hero"><div class="w-layout-blockcontainer container-col-12 w-container"><div class="css-prefill-form w-embed"><style>
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
   input:-webkit-autofill:focus,
@@ -975,61 +1093,7 @@ input,select,textarea {
     -webkit-text-fill-color: var(--_colors---swatch--beige) !important; /* Change #000000 to your desired text color */
     transition: background-color 5000s ease-in-out 0s;
   }
-</style></div><div class="f-form-parent is--form-img-right w-form"><form class="f-form is--form" data-form="multistep" data-name="Upload Form" data-reinit="true" data-scroll-top="true" data-wf-element-id="e66a865b-3072-8e00-1551-ba8171f061ff" data-wf-page-id="678a7937a4cdc07acaf0ab5b" id="wf-form-Upload-Form" method="get" name="wf-form-Upload-Form"><div class="f-form-steps-wrap is---2"><div class="f-form-navigation_wrapper"><div class="f-form-navigation"><div class="f-form-navigation_steps"><div class="hide-tablet-mobile"><div class="padding-right padding-24px"><div class="f-form-navigation_title"><div class="callout-text"><div>Steps</div></div></div></div></div><div class="f-form-navigation_steps-group hide-mobile"><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="1" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Intro</span></a><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="2" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Upload</span></a><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="3" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Description</span></a><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="4" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Contact info</span></a></div></div><div class="msf-button is-prev"><div class="hide-tablet-mobile"><a aria-label="staggering button" class="btn-animate-chars is-outline w-inline-block [is-icon]" data-form="back-btn" href="#"><div class="btn-animate-chars__bg outline-light-5"></div><span class="btn-animate-chars__text outline-light-6" data-button-animate-chars="">Previous step</span></a></div><div class="hide-desktop"><div class="msf-button is-prev" data-form="back-btn"><div aria-label="" class="icon-button"><div class="icon-button_element is-outline is-outline"><div class="icon-btn_item rotation-180 rotation- (90/180/315)"><div class="icon-16px"><div class="icon"><svg class="height-100" fill="none" height="100%" viewbox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></div></div></div></div></div><div class="button-group"><div class="form-button" data-form="next-btn"><div class="hide"><a class="w-button" data-form="next-btn" fs-mirrorclick-element="target-2" href="#">Button Text</a></div><a aria-label="staggering button" class="btn-animate-chars w-inline-block [is-icon]" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Next step</span><div class="button-icon {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a></div><div class="msf-button is-submit" data-form="submit-btn"><a aria-label="staggering button" class="btn-animate-chars w-variant-2e332d1d-6c07-3699-03b8-424432658809 w-inline-block [is-icon]" data-wf--button--variant="green" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text w-variant-2e332d1d-6c07-3699-03b8-424432658809" data-button-animate-chars="">Send Submission</span><div class="button-icon w-variant-2e332d1d-6c07-3699-03b8-424432658809 {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a><div class="hide"><input class="hide-submit w-button" data-btn="reset" data-form="submit-btn" data-wait="" fs-mirrorclick-element="target" type="submit" value="Submit"/></div></div></div></div></div><div class="f-form-steps-item is-split is-first" data-card="true" data-form="step"><div class="f-steps-bg"></div><div class="f-steps-grid"><div class="f-steps-grid_content" id="w-node-_60819b88-2053-0050-b56b-61c3aee88bb8-caf0ab5b"><div class="padding-global"><div class="f-steps-header"><div class="eyebrow-style">Intro</div><div class="padding-top padding-16px"><h1 class="heading-s">Submit your project in a few easy steps</h1></div><div class="max-width-448px"><div class="padding-top padding-24px"><p class="paragraph-regular" style="font-family:'Geist Mono', monospace; font-size:12px; color:var(--muted); line-height:1.6; text-transform:none;">"Real generosity toward the future lies in giving all to the present." Albert Camus. Dedicated to the signals that remain.</p></div></div></div></div><div class="f-steps-grid_content is-video" id="w-node-_458398cb-13f9-a6eb-ff74-e903484444c9-caf0ab5b"><div class="aspect-ratio-1-1"><div class="video is-hover" color-mode="dark" data-cursor="Play video" plyr-comp=""><div class="video-src w-embed" plyr-src=""><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div><div class="video-trigger" plyr-pause-trigger=""></div><div class="video-cover"><div class="video-preview w-embed" video-hover="play" video-reset="hover"><div class="w-background-video w-background-video-atom" data-poster-url="" style="width: 100%; height: 100%;"><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div></div><div class="video-btn"><svg class="icon-32px" fill="none" height="100%" viewbox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M9.93531 6.3745C9.26959 5.95085 8.39844 6.42907 8.39844 7.21816V18.2748C8.39844 19.0639 9.26959 19.5421 9.93531 19.1185L18.6227 13.5901C19.2402 13.1972 19.2402 12.2958 18.6227 11.9028L9.93531 6.3745Z" fill="currentColor"></path></svg></div></div></div></div><div class="popup-comp" data-gsap-text="false"><div class="w-embed"><style>
-.popup-text-inner {
-  opacity: 0;
-  pointer-events: none;
-}
-
-.popup-text.open .popup-text-inner.visible {
-  pointer-events: auto;
-}
-
-</style></div><div class="popup-toggle" hover-spotlight="item"><div class="popup-toggle_open hide"><svg class="icon-24px" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="currentColor"></circle><path d="M16.2431 12H12.0005M12.0005 12H7.75781M12.0005 12V16.2426M12.0005 12L12.0005 7.75732" stroke="currentColor"></path></svg></div><div class="popup-toggle_close"><svg class="icon-24px" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9.5" stroke="currentColor"></circle><path d="M16.2422 12H11.9995H7.75691" stroke="currentColor"></path></svg></div></div><div class="popup-content"><div class="popup-thumb"><div class="video-embed w-embed"><div class="video-cover" loading="lazy"><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div>
-<style>
-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-cover video {
-  object-fit: cover;
-}
-</style></div><div class="video-embed w-embed"><div class="video-cover" loading="lazy"><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div>
-<style>
-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-cover video {
-  object-fit: cover;
-}
-</style></div><div class="video hide"><div class="video-cover is-popup"><div class="video-embed w-embed"><div class="video-cover" loading="lazy"><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div>
-<style>
-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-cover video {
-  object-fit: cover;
-}
-</style></div></div><div class="video-frame"></div></div></div><div class="popup-text"><div class="popup-text-inner"><div class="mono-type" data-typing="popup">Vragen? Stuur ons gerust een appje! </div></div></div><div class="popup-whatsapp" data-whatsapp-modal-trigger=""><div aria-label="" class="icon-button is-popup" fs-mirrorclick-element=""><div class="icon-button_transform w-embed"><style>
-@media (min-width: 992px) {
-.icon-button_element.is-outline:hover .icon-btn_bg {
-    transform: translateX(0%) translateY(0%);
-}
-</style></div><div class="icon-button_element is-outline is-outline"><div class="icon-btn_bg is-vertical is-vertical"><div class="icon-btn_bg-fill is- (black/yellow/gold/outline)"></div></div><div class="icon-btn_content"><div class="icon-btn_track is-vertical"><div class="icon-btn_item rotation- (90/180/315)"><div class="rotation-(90/180/270/315)"><div class="icon-32px"><div class="icon"><svg class="height-100" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M19.0488 4.90679C17.3492 3.20699 15.0896 2.1829 12.691 2.02525C10.2924 1.8676 7.9183 2.58714 6.01079 4.04986C4.10328 5.51257 2.79244 7.61874 2.3224 9.97612C1.85237 12.3335 2.25518 14.7813 3.45583 16.8638L2.04883 21.9998L7.29983 20.6208C8.75229 21.4122 10.3797 21.8275 12.0338 21.8288C13.9947 21.8298 15.9118 21.2493 17.5427 20.1605C19.1735 19.0717 20.4448 17.5237 21.1957 15.7123C21.9465 13.9009 22.1432 11.9074 21.7609 9.9842C21.3786 8.06095 20.4344 6.29431 19.0478 4.90779L19.0488 4.90679ZM12.0408 20.1568C10.5646 20.1571 9.11555 19.7598 7.84583 19.0068L7.54583 18.8268L4.42783 19.6438L5.26083 16.6048L5.06583 16.2928C4.38642 15.2116 3.96761 13.9873 3.84248 12.7165C3.71735 11.4457 3.88931 10.1632 4.3448 8.97028C4.80028 7.77734 5.52682 6.70659 6.46706 5.84258C7.40729 4.97856 8.53549 4.34491 9.7626 3.99166C10.9897 3.63841 12.2821 3.57522 13.5378 3.80708C14.7935 4.03895 15.9782 4.55951 16.9982 5.32769C18.0183 6.09586 18.8458 7.09062 19.4155 8.23344C19.9851 9.37626 20.2814 10.6359 20.2808 11.9128C20.2777 14.0975 19.4086 16.1918 17.8641 17.7369C16.3195 19.282 14.2255 20.1528 12.0408 20.1568ZM16.5568 13.9848C16.3108 13.8598 15.0918 13.2628 14.8648 13.1848C14.6378 13.1068 14.4738 13.0598 14.3058 13.3098C14.1378 13.5598 13.6658 14.1098 13.5208 14.2828C13.3758 14.4558 13.2328 14.4698 12.9858 14.3448C12.2557 14.053 11.5817 13.6369 10.9938 13.1148C10.4532 12.6135 9.98893 12.0357 9.61583 11.3998C9.47083 11.1538 9.59983 11.0178 9.72583 10.8998C9.85183 10.7818 9.97183 10.6108 10.0968 10.4658C10.199 10.3407 10.2823 10.2012 10.3438 10.0518C10.3767 9.98345 10.3921 9.90802 10.3886 9.83227C10.3851 9.75652 10.3628 9.68282 10.3238 9.61779C10.2608 9.49279 9.76483 8.27379 9.56183 7.77779C9.35883 7.28179 9.15583 7.35179 8.99983 7.34379C8.84383 7.33579 8.68983 7.33579 8.52683 7.33579C8.40154 7.33946 8.27833 7.36877 8.16481 7.42191C8.0513 7.47506 7.94988 7.55092 7.86683 7.64479C7.58676 7.91028 7.36504 8.23117 7.21577 8.58704C7.06651 8.94291 6.99296 9.32595 6.99983 9.71179C7.08041 10.646 7.43176 11.5363 8.01083 12.2738C9.07315 13.8655 10.5308 15.1539 12.2408 16.0128C12.8308 16.2668 13.2918 16.4188 13.6508 16.5368C14.1558 16.6899 14.6894 16.7241 15.2098 16.6368C15.5546 16.5668 15.8812 16.4262 16.1689 16.2238C16.4567 16.0214 16.6994 15.7616 16.8818 15.4608C17.0442 15.0914 17.0947 14.6825 17.0268 14.2848C16.9688 14.1738 16.8048 14.1138 16.5548 13.9848H16.5568Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></div><div class="icon-btn_item is-vertical"><div class="rotation-(90/180/270/315)"><div class="icon-32px"><div class="icon"><svg class="height-100" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M19.0488 4.90679C17.3492 3.20699 15.0896 2.1829 12.691 2.02525C10.2924 1.8676 7.9183 2.58714 6.01079 4.04986C4.10328 5.51257 2.79244 7.61874 2.3224 9.97612C1.85237 12.3335 2.25518 14.7813 3.45583 16.8638L2.04883 21.9998L7.29983 20.6208C8.75229 21.4122 10.3797 21.8275 12.0338 21.8288C13.9947 21.8298 15.9118 21.2493 17.5427 20.1605C19.1735 19.0717 20.4448 17.5237 21.1957 15.7123C21.9465 13.9009 22.1432 11.9074 21.7609 9.9842C21.3786 8.06095 20.4344 6.29431 19.0478 4.90779L19.0488 4.90679ZM12.0408 20.1568C10.5646 20.1571 9.11555 19.7598 7.84583 19.0068L7.54583 18.8268L4.42783 19.6438L5.26083 16.6048L5.06583 16.2928C4.38642 15.2116 3.96761 13.9873 3.84248 12.7165C3.71735 11.4457 3.88931 10.1632 4.3448 8.97028C4.80028 7.77734 5.52682 6.70659 6.46706 5.84258C7.40729 4.97856 8.53549 4.34491 9.7626 3.99166C10.9897 3.63841 12.2821 3.57522 13.5378 3.80708C14.7935 4.03895 15.9782 4.55951 16.9982 5.32769C18.0183 6.09586 18.8458 7.09062 19.4155 8.23344C19.9851 9.37626 20.2814 10.6359 20.2808 11.9128C20.2777 14.0975 19.4086 16.1918 17.8641 17.7369C16.3195 19.282 14.2255 20.1528 12.0408 20.1568ZM16.5568 13.9848C16.3108 13.8598 15.0918 13.2628 14.8648 13.1848C14.6378 13.1068 14.4738 13.0598 14.3058 13.3098C14.1378 13.5598 13.6658 14.1098 13.5208 14.2828C13.3758 14.4558 13.2328 14.4698 12.9858 14.3448C12.2557 14.053 11.5817 13.6369 10.9938 13.1148C10.4532 12.6135 9.98893 12.0357 9.61583 11.3998C9.47083 11.1538 9.59983 11.0178 9.72583 10.8998C9.85183 10.7818 9.97183 10.6108 10.0968 10.4658C10.199 10.3407 10.2823 10.2012 10.3438 10.0518C10.3767 9.98345 10.3921 9.90802 10.3886 9.83227C10.3851 9.75652 10.3628 9.68282 10.3238 9.61779C10.2608 9.49279 9.76483 8.27379 9.56183 7.77779C9.35883 7.28179 9.15583 7.35179 8.99983 7.34379C8.84383 7.33579 8.68983 7.33579 8.52683 7.33579C8.40154 7.33946 8.27833 7.36877 8.16481 7.42191C8.0513 7.47506 7.94988 7.55092 7.86683 7.64479C7.58676 7.91028 7.36504 8.23117 7.21577 8.58704C7.06651 8.94291 6.99296 9.32595 6.99983 9.71179C7.08041 10.646 7.43176 11.5363 8.01083 12.2738C9.07315 13.8655 10.5308 15.1539 12.2408 16.0128C12.8308 16.2668 13.2918 16.4188 13.6508 16.5368C14.1558 16.6899 14.6894 16.7241 15.2098 16.6368C15.5546 16.5668 15.8812 16.4262 16.1689 16.2238C16.4567 16.0214 16.6994 15.7616 16.8818 15.4608C17.0442 15.0914 17.0947 14.6825 17.0268 14.2848C16.9688 14.1738 16.8048 14.1138 16.5548 13.9848H16.5568Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></div></div></div></div></div><a class="whatsapp-modal__overlay-link w-inline-block" data-whatsapp-modal-link="" href="#"></a><div class="whatsapp-modal__overlay-toggle" data-whatsapp-modal-toggle=""></div></div></div><div class="popup-bg"></div></div></div></div></div><div class="f-form-steps-item is-split is-02" data-card="true" data-form="step"><div class="f-steps-bg"></div><div class="f-steps-grid"><div class="f-steps-grid_content is-upload-left"><div class="max-width-720px"><div class="padding-global"><div class="f-steps-header"><div class="eyebrow-style">Upload</div><div class="padding-top padding-16px"><h1 class="heading-s">Add clear photos of your build or schematic</h1></div><div><div class="padding-top padding-24px"><p class="paragraph-regular">Add at least 3 clear photos: a front view, a close-up and a detail of the texture. Optionally, you can add a video. If available, you can also upload supporting files such as a datasheet, schematic, or reference design.<br/></p></div><div class="padding-top padding-16px opacity-60"><p class="paragraph-regular">Please upload a file before continuing to the next step.</p></div><div class="padding-top padding-40px"><uploader-atharveeee class="uc-comp" ctx-name="Atharvekoopt"><uc-config camera-modes="photo, video" ctx-name="Atharvekoopt" files-view-mode="list" group-output="true" img-only="false" locale-name="en" multiple="true" multiple-max="30" multiple-min="1" pubkey="8ff3bac691e3c41b8f17" source-list="local, url, camera, dropbox, gdrive" use-cloud-image-editor="false" user-agent-integration="Webflow/1.0.0"></uc-config><uc-file-uploader-regular class="uc-dark" ctx-name="Atharvekoopt" data-uploadcare="true" headless="true"><uc-form-input ctx-name="Atharvekoopt"></uc-form-input></uc-file-uploader-regular><uc-upload-ctx-provider ctx-name="Atharvekoopt"></uc-upload-ctx-provider><div class="upload-list"><div class="upload-item"><div class="upload-item_img"></div><div class="upload-item_file-name">File name</div><div class="upload-item_delete"><svg class="icon-24px" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 7H5H21" stroke="currentColor"></path><path d="M18.5 7L17.5 21H6.5L5.5 7M8 7L8.5 3.5H15.5L16 7" stroke="currentColor"></path></svg></div></div></div><div aria-label="staggering button" class="btn-animate-chars is-outline is-upload" ctx-name="Atharvekoopt" ucuploadbtn="true"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Upload files</span><div class="button-icon is-upload"><svg class="icon-24px" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 9L12 3L6 9" stroke="currentColor" stroke-miterlimit="10"></path><path d="M12 3V17" stroke="currentColor" stroke-miterlimit="10"></path><path d="M3 21H21" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span ctx-name="Atharvekoopt" style="display: block;"> </span><div class="uc-css w-embed"><style>
+</style></div><div class="f-form-parent is--form-img-right w-form"><form class="f-form is--form" data-form="multistep" data-name="Upload Form" data-reinit="true" data-scroll-top="true" data-wf-element-id="e66a865b-3072-8e00-1551-ba8171f061ff" data-wf-page-id="678a7937a4cdc07acaf0ab5b" id="wf-form-Upload-Form" method="get" name="wf-form-Upload-Form"><div class="f-form-steps-wrap is---2"><div class="f-form-navigation_wrapper"><div class="f-form-navigation"><div class="f-form-navigation_steps"><div class="hide-tablet-mobile"><div class="padding-right padding-24px"><div class="f-form-navigation_title"><div class="callout-text"><div>Steps</div></div></div></div></div><div class="f-form-navigation_steps-group hide-mobile"><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="1" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Intro</span></a><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="2" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Upload</span></a><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="3" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Description</span></a><a class="form-step_btn w-inline-block" data-btn="edit" data-edit-step="4" data-form="custom-progress-indicator" href="#"><div class="form-step_btn-bg"></div><div class="steps-icon {rotation-90}"><div class="steps-icon_fill"></div><div class="steps-icon_complete"><svg class="icon-10px" fill="none" viewbox="0 0 10 7" width="100%" xmlns="http://www.w3.org/2000/svg"><path d="M1 2.5L4 5.5L9 0.5" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span class="form-step_title">Contact info</span></a></div></div><div class="msf-button is-prev"><div class="hide-tablet-mobile"><a aria-label="staggering button" class="btn-animate-chars is-outline w-inline-block [is-icon]" data-form="back-btn" href="#"><div class="btn-animate-chars__bg outline-light-5"></div><span class="btn-animate-chars__text outline-light-6" data-button-animate-chars="">Previous step</span></a></div><div class="hide-desktop"><div class="msf-button is-prev" data-form="back-btn"><div aria-label="" class="icon-button"><div class="icon-button_element is-outline is-outline"><div class="icon-btn_item rotation-180 rotation- (90/180/315)"><div class="icon-16px"><div class="icon"><svg class="height-100" fill="none" height="100%" viewbox="0 0 8 13" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></div></div></div></div></div><div class="button-group"><div class="form-button" data-form="next-btn"><div class="hide"><a class="w-button" data-form="next-btn" fs-mirrorclick-element="target-2" href="#">Button Text</a></div><a aria-label="staggering button" class="btn-animate-chars w-inline-block [is-icon]" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Next step</span><div class="button-icon {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a></div><div class="msf-button is-submit" data-form="submit-btn"><a aria-label="staggering button" class="btn-animate-chars w-variant-2e332d1d-6c07-3699-03b8-424432658809 w-inline-block [is-icon]" data-wf--button--variant="green" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text w-variant-2e332d1d-6c07-3699-03b8-424432658809" data-button-animate-chars="">Send Submission</span><div class="button-icon w-variant-2e332d1d-6c07-3699-03b8-424432658809 {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a><div class="hide"><input class="hide-submit w-button" data-btn="reset" data-form="submit-btn" data-wait="" fs-mirrorclick-element="target" type="submit" value="Submit"/></div></div></div></div></div><div class="f-form-steps-item is-split is-first" data-card="true" data-form="step"><div class="f-steps-bg"></div><div class="f-steps-grid"><div class="f-steps-grid_content" id="w-node-_60819b88-2053-0050-b56b-61c3aee88bb8-caf0ab5b"><div class="padding-global"><div class="f-steps-header"><div class="eyebrow-style">Intro</div><div class="padding-top padding-16px"><h1 class="heading-s">Submit your project in a few easy steps</h1></div><div class="max-width-448px"><div class="padding-top padding-24px"><p class="paragraph-m">I review every brief with care and get back to you within 48 hours.</p></div></div><div class="padding-top padding-32px"><div class="button-group"><div class="form-button" data-form="next-btn"><div class="hide"><a class="w-button" data-form="next-btn" fs-mirrorclick-element="target-2" href="#">Button Text</a></div><a aria-label="staggering button" class="btn-animate-chars w-variant-2e332d1d-6c07-3699-03b8-424432658809 w-inline-block [is-icon]" data-wf--button--variant="green" href="#"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Start here</span><div class="button-icon {rotation-90}"><div class="button-icon_track"><div class="button-icon_arrow"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div><div class="button-icon_arrow is-1"><svg class="icon-10px" fill="none" viewbox="0 0 8 13" width="100%" xmlns="http://www.w3.org/2000/svg"><path clip-rule="evenodd" d="M7.56055 6.5L2.03022 12.0303L0.969556 10.9697L5.43923 6.5L0.969557 2.03033L2.03022 0.969665L7.56055 6.5Z" fill="currentColor" fill-rule="evenodd"></path></svg></div></div></div></a></div></div></div><div class="padding-top padding-24px"><p class="paragraph-regular" style="font-family:'Geist Mono', monospace; font-size:12px; opacity:.45; line-height:1.6; text-transform:none;">"Real generosity toward the future lies in giving all to the present." Albert Camus.</p></div></div></div></div><div class="f-steps-grid_content is-video" id="w-node-_458398cb-13f9-a6eb-ff74-e903484444c9-caf0ab5b"><div class="aspect-ratio-1-1"><div class="video is-hover" color-mode="dark" data-cursor="Play video" plyr-comp=""><div class="video-src w-embed" plyr-src=""><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div><div class="video-trigger" plyr-pause-trigger=""></div><div class="video-cover"><div class="video-preview w-embed" video-hover="play" video-reset="hover"><div class="w-background-video w-background-video-atom" data-poster-url="" style="width: 100%; height: 100%;"><div class="painting-frame"><img alt="Collaboration Bench Setup" src="assets/img/project-placeholder.png" style="width:100%; height:100%; object-fit:cover;"/></div></div></div><div class="video-btn"><svg class="icon-32px" fill="none" height="100%" viewbox="0 0 26 26" xmlns="http://www.w3.org/2000/svg"><path d="M9.93531 6.3745C9.26959 5.95085 8.39844 6.42907 8.39844 7.21816V18.2748C8.39844 19.0639 9.26959 19.5421 9.93531 19.1185L18.6227 13.5901C19.2402 13.1972 19.2402 12.2958 18.6227 11.9028L9.93531 6.3745Z" fill="currentColor"></path></svg></div></div></div></div></div></div></div><div class="f-form-steps-item is-split is-02" data-card="true" data-form="step"><div class="f-steps-bg"></div><div class="f-steps-grid"><div class="f-steps-grid_content is-upload-left"><div class="max-width-720px"><div class="padding-global"><div class="f-steps-header"><div class="eyebrow-style">Upload</div><div class="padding-top padding-16px"><h1 class="heading-s">Add clear photos of your build or schematic</h1></div><div><div class="padding-top padding-24px"><p class="paragraph-regular">Add at least 3 clear photos: a front view, a close-up and a detail of the texture. Optionally, you can add a video. If available, you can also upload supporting files such as a datasheet, schematic, or reference design.<br/></p></div><div class="padding-top padding-16px opacity-60"><p class="paragraph-regular">Please upload a file before continuing to the next step.</p></div><div class="padding-top padding-40px"><uploader-atharveeee class="uc-comp" ctx-name="Atharvekoopt"><uc-config camera-modes="photo, video" ctx-name="Atharvekoopt" files-view-mode="list" group-output="true" img-only="false" locale-name="en" multiple="true" multiple-max="30" multiple-min="1" pubkey="8ff3bac691e3c41b8f17" source-list="local, url, camera, dropbox, gdrive" use-cloud-image-editor="false" user-agent-integration="Webflow/1.0.0"></uc-config><uc-file-uploader-regular class="uc-dark" ctx-name="Atharvekoopt" data-uploadcare="true" headless="true"><uc-form-input ctx-name="Atharvekoopt"></uc-form-input></uc-file-uploader-regular><uc-upload-ctx-provider ctx-name="Atharvekoopt"></uc-upload-ctx-provider><div class="upload-list"><div class="upload-item"><div class="upload-item_img"></div><div class="upload-item_file-name">File name</div><div class="upload-item_delete"><svg class="icon-24px" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 7H5H21" stroke="currentColor"></path><path d="M18.5 7L17.5 21H6.5L5.5 7M8 7L8.5 3.5H15.5L16 7" stroke="currentColor"></path></svg></div></div></div><div aria-label="staggering button" class="btn-animate-chars is-outline is-upload" ctx-name="Atharvekoopt" ucuploadbtn="true"><div class="btn-animate-chars__bg"></div><span class="btn-animate-chars__text" data-button-animate-chars="">Upload files</span><div class="button-icon is-upload"><svg class="icon-24px" fill="none" height="100%" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 9L12 3L6 9" stroke="currentColor" stroke-miterlimit="10"></path><path d="M12 3V17" stroke="currentColor" stroke-miterlimit="10"></path><path d="M3 21H21" stroke="currentColor" stroke-miterlimit="10"></path></svg></div></div><span ctx-name="Atharvekoopt" style="display: block;"> </span><div class="uc-css w-embed"><style>
 /* Primary buttons */
 .uc-primary-btn {
   padding: 0.75em 1em !important;
@@ -1179,8 +1243,13 @@ function initWhatsAppModal() {
 
   // Insert into canvas (or multiple if needed)
   modal.querySelectorAll('[data-whatsapp-modal-qr-canvas]').forEach((placeholder, i) => {
-    const node = i === 0 ? svg : svg.cloneNode(true);
-    placeholder.appendChild(node);
+    // Prefer the custom WhatsApp QR image; fall back to the generated QR if it's missing
+    const img = document.createElement('img');
+    img.src = (location.pathname.includes('/projects/') ? '../' : '') + 'assets/img/whatsapp-qr.png';
+    img.alt = 'WhatsApp QR';
+    img.style.cssText = 'width:100%;height:100%;object-fit:contain;display:block;';
+    img.onerror = function(){ img.remove(); placeholder.appendChild(i === 0 ? svg : svg.cloneNode(true)); };
+    placeholder.appendChild(img);
   });
 
   // Add the link to all elements with [data-whatsapp-modal-link] attribute
@@ -1237,7 +1306,7 @@ $(document).ready(function () {
 
       // 🎚️ Fade out audio before leaving
       if (window.bgSound && bgSound.playing()) {
-        bgSound.fade(bgSound.volume(), 0, 700);
+        bgSound.fade(bgSound.volume(), 0, 250);
       }
 
       const exitTimeline = gsap.timeline({
@@ -1380,6 +1449,7 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('beforeunload', function() {
     localStorage.setItem('soundPosition', bgSound.seek() || 0);
   });
+  window.addEventListener('pagehide', function(){try{localStorage.setItem('soundPosition', bgSound.seek()||0);}catch(e){}try{if(window.Howler){Howler.stop();}else if(window.bgSound){bgSound.stop();}}catch(e){}});
 
   document.addEventListener('visibilitychange', function() {
     if (document.hidden) {
@@ -2014,4 +2084,59 @@ document.addEventListener("DOMContentLoaded", () => {
     $('#condition').val(value);
   });
 </script>
-<script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F695270790d7867aa580158a6%2Femptyfieldsremoval-1.1.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F6952707a9ee102ae239b5c4b%2Fmetadatahandler-0.0.5.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F6952707ae33217ec9423bd2d%2Fenablevisiblebuttons-0.0.7.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F6952707adbef871248466da0%2Fenableuploadstateview-0.0.3.js" type="text/javascript"></script></body></html>
+<script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F695270790d7867aa580158a6%2Femptyfieldsremoval-1.1.0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F6952707a9ee102ae239b5c4b%2Fmetadatahandler-0.0.5.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F6952707ae33217ec9423bd2d%2Fenablevisiblebuttons-0.0.7.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/67890d3b1a9365a1173c954e%2F685146e1d8a68f749232b664%2F6952707adbef871248466da0%2Fenableuploadstateview-0.0.3.js" type="text/javascript"></script><script id="mobile-nav-toggle">
+(function(){
+  function init(){
+    var nav = document.querySelector('nav.nav');
+    if(!nav || nav.__mobileNavInit) return;
+    var trigger = nav.querySelector('.nav-trigger');
+    var wrapper = nav.querySelector('.navmenu-wrapper');
+    if(!trigger || !wrapper) return;
+    nav.__mobileNavInit = true;
+
+    trigger.setAttribute('role', 'button');
+    trigger.setAttribute('aria-label', 'Menu');
+    trigger.setAttribute('aria-controls', 'navmenu');
+    trigger.setAttribute('aria-expanded', 'false');
+    wrapper.id = wrapper.id || 'navmenu';
+
+    var root = document.documentElement, body = document.body;
+    function open(){
+      nav.classList.add('nav-open');
+      root.classList.add('menu-open');
+      body.classList.add('menu-open');
+      trigger.setAttribute('aria-expanded', 'true');
+    }
+    function close(){
+      nav.classList.remove('nav-open');
+      root.classList.remove('menu-open');
+      body.classList.remove('menu-open');
+      trigger.setAttribute('aria-expanded', 'false');
+    }
+    function toggle(e){
+      if(e){ e.preventDefault(); e.stopPropagation(); }
+      if(nav.classList.contains('nav-open')) close(); else open();
+    }
+
+    trigger.addEventListener('click', toggle);
+    // Tapping a menu link navigates AND closes the overlay
+    wrapper.addEventListener('click', function(e){
+      if(e.target.closest('a')) close();
+    });
+    // Escape closes
+    document.addEventListener('keydown', function(e){
+      if((e.key === 'Escape' || e.key === 'Esc') && nav.classList.contains('nav-open')) close();
+    });
+    // Returning to desktop width tidies up state
+    window.addEventListener('resize', function(){
+      if(window.innerWidth > 991 && nav.classList.contains('nav-open')) close();
+    });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+</body></html>
