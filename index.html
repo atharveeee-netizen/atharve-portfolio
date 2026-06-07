@@ -491,14 +491,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
      ~90px from the raw left edge, (4) generous 120/160px vertical padding.
      Inner GSAP pin + circle animation is left intact. */
 
-  /* (1) full bleed + (2) top border + (4) vertical padding */
+  /* (1) full bleed + (2) top border + (4) vertical padding.
+     padding-top is kept small (24px) so the rounded hero-outline frame sits
+     near the green's top edge and reads as a framed "card" under the dark
+     seam — the generous top whitespace is moved onto the content below. */
   .section_cta-cards {
     width: 100vw !important;
     margin-left: calc(-50vw + 50%) !important;
     border-top: 1px solid var(--_colors---swatch--black) !important;
-    padding-top: 120px !important;
+    padding-top: 24px !important;
     padding-bottom: 160px !important;
   }
+  /* Boundary: pull the rounded frame up near the top edge (matches reference) */
+  .section_cta-cards .usp-cards-section { padding-top: 16px !important; }
   /* Release the centred max-width containers so content can reach the left edge */
   .section_cta-cards > .container-col-12.w-container { max-width: none !important; }
   .section_cta-cards .container-col-10.w-container {
@@ -511,6 +516,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     border-radius: 0 !important;
     justify-content: flex-start !important;
     align-items: flex-start !important;
+    padding-top: 96px !important;   /* generous whitespace, now inside the frame */
+    padding-bottom: 96px !important;
   }
   /* (3) headline + copy flush-left, ~80–100px in from the raw viewport edge */
   .section_cta-cards .cc_content {
@@ -524,6 +531,27 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     text-align: left !important;
     align-items: flex-start !important;
   }
+
+  /* ===== Green tone = the reference's RESTING bright sage swatch =====
+     (Earlier I matched a dim mid-scroll fade state by mistake; the reference's
+     green at rest is the bright sage #7a8b69, so keep the raw swatch here.) */
+  .section_cta-cards,
+  .section_cta-cards .usp-cards-section,
+  .section_cta-cards .cta-wrap.is-cta-cards {
+    background-color: var(--_colors---swatch--green) !important;
+  }
+  /* No box around the green: the reference's green section has NO frame of its
+     own (only the dark block above is framed). Remove the rounded-rectangle
+     outline so the green reads as a clean full-bleed fill. */
+  .section_cta-cards .hero-outline { display: none !important; }
+  /* No hard seam line: the boundary is the dark section's own grey frame above
+     plus the dark gap. A thick border here would paint over that frame, so the
+     green section starts flush (border removed). */
+  .section_cta-cards { border-top: 0 !important; }
+  /* Widen the dark gap below the grey frame to ~37px (reference) by pushing the
+     green block down — the revealed strip shows the dark body bg (rgb 23,28,28),
+     so the dark frame's rounded bottom stays uncovered. */
+  .section_cta-cards { margin-top: 18px !important; }
 </style>
 </head><body>
 <!-- Google Tag Manager (noscript) -->
@@ -1569,6 +1597,33 @@ document.addEventListener("DOMContentLoaded",(function(){window.innerWidth>991&&
     init();
   }
 })();
+</script>
+<!-- Button hover Character stagger -->
+<script>
+	function initButtonCharacterStagger() {
+  const offsetIncrement = 0.01; // Transition offset increment in seconds
+  const buttons = document.querySelectorAll('[data-button-animate-chars]');
+
+  buttons.forEach(button => {
+    const text = button.textContent; // Get the button's text content
+    button.innerHTML = ''; // Clear the original content
+
+    [...text].forEach((char, index) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.transitionDelay = `${index * offsetIncrement}s`;
+      if (char === ' ') {
+        span.style.whiteSpace = 'pre';
+      }
+      button.appendChild(span);
+    });
+  });
+}
+
+// Initialize Button Character Stagger Animation
+document.addEventListener('DOMContentLoaded', () => {
+  initButtonCharacterStagger();
+});
 </script>
 <script defer src="assets/btn-hover.js"></script>
 </body></html>

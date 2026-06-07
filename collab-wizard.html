@@ -1743,21 +1743,15 @@ document.addEventListener("DOMContentLoaded", function() {
     const text = button.textContent; // Get the button's text content
     button.innerHTML = ''; // Clear the original content
 
-    if (button.classList.contains('navbar-link_text')) {
+    [...text].forEach((char, index) => {
       const span = document.createElement('span');
-      span.textContent = text;
+      span.textContent = char;
+      span.style.transitionDelay = `${index * offsetIncrement}s`;
+      if (char === ' ') {
+        span.style.whiteSpace = 'pre';
+      }
       button.appendChild(span);
-    } else {
-      [...text].forEach((char, index) => {
-        const span = document.createElement('span');
-        span.textContent = char;
-        span.style.transitionDelay = `${index * offsetIncrement}s`;
-        if (char === ' ') {
-          span.style.whiteSpace = 'pre';
-        }
-        button.appendChild(span);
-      });
-    }
+    });
   });
 }
 
