@@ -1570,5 +1570,31 @@ document.addEventListener("DOMContentLoaded",(function(){window.innerWidth>991&&
   }
 })();
 </script>
-<script defer src="assets/btn-hover.js"></script>
+<!-- Button hover Character stagger -->
+<script>
+	function initButtonCharacterStagger() {
+  const offsetIncrement = 0.01; // Transition offset increment in seconds
+  const buttons = document.querySelectorAll('[data-button-animate-chars]');
+
+  buttons.forEach(button => {
+    const text = button.textContent; // Get the button's text content
+    button.innerHTML = ''; // Clear the original content
+
+    [...text].forEach((char, index) => {
+      const span = document.createElement('span');
+      span.textContent = char;
+      span.style.transitionDelay = `${index * offsetIncrement}s`;
+      if (char === ' ') {
+        span.style.whiteSpace = 'pre';
+      }
+      button.appendChild(span);
+    });
+  });
+}
+
+// Initialize Button Character Stagger Animation
+document.addEventListener('DOMContentLoaded', () => {
+  initButtonCharacterStagger();
+});
+</script>
 </body></html>
