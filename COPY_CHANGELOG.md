@@ -121,3 +121,34 @@ Row 33 first shipped as "Bring the brief" — failed the Mouth test (Building–
 
 ---
 *Verification: quote guard re-run after final commit — aliens verse, Bukowski, Camus lit-quote, Camus footer all byte-identical to baseline. QA: no console errors; audio gate, gallery h1, labtour header, contact form all render without overflow at 1440×900.*
+
+---
+
+# ADDENDUM — user-directed rounds, June 12, 2026 (same session)
+Commits: `5fb7b20` labtour · `7f146f8` about · `a0a986a` projects · `822164a` privacy · `c02e7d5` shared. Length rule waived by owner where noted. All requests came live from the owner; the Voice Bible still governed word choice.
+
+| Slot | OLD | NEW |
+|---|---|---|
+| labtour hero kicker | Inside the lab | Lavad, Gujarat |
+| labtour hero h1 | Built in *Gujarat* | Copper, solder, *silicon.* (Morgan method: name the materials) |
+| labtour hero subline | The bench, as found. | Where the F450 got its scars. |
+| labtour intro para | (short version) | "…a parts list, then a second one after the first proved wrong. Late evenings, probe in hand. Attempts that didn't hold, and the one that finally did." |
+| labtour staged para | (short version) | "…one pad at a time… until the wobble drops below what a finger can feel. Most of it fails first, more than once, before any of it flies…" |
+| labtour fumes para | (short version) | "…an oscilloscope showing whatever the current problem is… Everything on the bench is halfway to being something else…" |
+| labtour notebook para | (one sentence) | + "The math checks whether a thing can fly. The sketches decide what it wants to be. Every build starts as an argument between those two pages." |
+| labtour list | (4 items) | + "Where it points: cryogenic CMOS, quantum hardware, robotics, and the writing about all three." |
+| labtour closer | Mostly chaos. Occasionally, flight. | Mostly chaos. Occasionally, verification. Now and then, flight. ("No commentary track" p removed) |
+| about hero para | On the floor, probe in hand… | "Most of what I chase happens near absolute zero: CMOS that still thinks at four kelvin, the readout chains a qubit answers through. The dilution refrigerator is this century's wind tunnel. I want my silicon in the cold." |
+| about maker para | …transistors I'll never see to aircraft I can barely catch. | "The work spans nine orders of magnitude: transistors too small to see, aircraft too fast to hold." |
+| about Camus para | …the silicon quantum machines dream in. | …the silicon **that** quantum machines dream in. (garden-path fix only) |
+| about Dalí signature | Salvador Dalí | Salvador Dalí, apocryphal (real quotes get real citations; the fake one confesses) |
+| about CTA | Bring me *something hard.* + "Got a build in mind…" | Send the *impossible.* + "A build with no datasheet. A lab that needs hands. An idea that sounds wrong out loud. Send it anyway." |
+| projects header para | New builds, still on the bench… | "Eight builds hang here before their stories do. The machines get finished first; the words take longer. Open any frame." |
+| projects captions ×8 | Coming soon: (eight bespoke lines) | On approach (uniform, ATC register; pairs with the pulsing status dot) |
+| footer h2 ×15 (was duplicated text) | Building hardware? Send the brief. ×2 | Nature flew first. / *I'm still translating.* (the thesis as sign-off) |
+| footer opener ×15 | Built from scratch in Gujarat. | Made slowly, by hand, on purpose. |
+| footer Camus ×15 | …Albert Camus. Dedicated to the signals that remain. | …Albert Camus, The Rebel, 1951. (quote sentence byte-identical; guard updated) |
+| navmenu strip ×16 | Building hardware? Send the brief. | Got a build in mind? Talk to me. |
+| privacy body | (template + we-voice) | I-voice rewrite; GA + Microsoft Clarity named honestly in the cookies clause |
+| dash sweep | all en/em dashes in prose | colons/commas/periods; coming-soon placard dash-art deliberately kept (design redaction bars) |
+| removed | Privacy settings footer button ×15 + its dead consent script ×16 | — |
