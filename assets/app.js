@@ -405,7 +405,7 @@
     var splash = document.createElement('div');
     splash.id = 'audio-splash';
     splash.innerHTML = '<div class="splash-inner"><div class="splash-bars"><span></span><span></span><span></span><span></span><span></span></div>'
-      + '<p>For the best experience, we<br>recommend turning on your sound.</p>'
+      + '<p>For the best experience, I<br>recommend turning on your sound.</p>'
       + '<div class="splash-btns"><button id="btn-no-audio">Without audio</button><button id="btn-with-audio">With audio</button></div></div>';
     document.body.appendChild(splash);
     document.body.style.overflow = 'hidden';
