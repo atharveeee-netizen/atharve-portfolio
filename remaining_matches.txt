@@ -1,2 +1,0 @@
-File: projects.html | Element: p | Text: "Five builds, hung like paintings. Drones, vision, boards — and one cold idea I can't put down. Click a frame for the full story."
-File: terms-conditions.html | Element: h2 | Text: "4. Offer & Purchase"
