@@ -1,0 +1,71 @@
+contact.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+contact.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+contact.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+contact.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+contact.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+contact.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+how-it-works.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+how-it-works.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+how-it-works.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+how-it-works.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+how-it-works.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+how-it-works.html | in_style=True | t: cover; }  /* Local grayscale background videos — self-hosted, replaces expiring remote embeds */ .
+how-it-works.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+index.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+index.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+index.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+index.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+index.html | in_style=True | ant; }    /* ===== Full-bleed sage-green CTA band — pieterkoopt.nl reference =====      (1) edge-to-e
+index.html | in_style=True | * Inset rounded green CARD with dark side-gutters — exactly like the reference      (its .cta-wrap si
+index.html | in_style=True |  (reference) by pushing the      green block down — the revealed strip shows the dark body bg (rgb 23
+index.html | in_style=True |  <style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+index.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+labtour.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+labtour.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+labtour.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+labtour.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+labtour.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+labtour.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+privacy-policy.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+privacy-policy.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+privacy-policy.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+privacy-policy.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+privacy-policy.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+privacy-policy.html | in_style=False | ragraph-l">What you hand me when you send a build — and what becomes of it.</p></div><div class="rich
+privacy-policy.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+projects.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+projects.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+projects.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+projects.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+projects.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+projects.html | in_style=False | me is-circuit"><img alt="Laser-Based LiFi Network — OptiSystem simulation circuit" class="gs_artwork-
+projects.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+terms-conditions.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+terms-conditions.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+terms-conditions.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+terms-conditions.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+terms-conditions.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+terms-conditions.html | in_style=False | rms apply when you use anything atharveeee offers — most of all, submitting a project for review.</p>
+terms-conditions.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+projects/f450-multirotor-drone.html | in_style=False | .com" rel="preconnect"/><title>atharveeee stories — f450 multirotor drone</title><link href="https://
+projects/f450-multirotor-drone.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+projects/f450-multirotor-drone.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+projects/f450-multirotor-drone.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+projects/f450-multirotor-drone.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+projects/f450-multirotor-drone.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+projects/f450-multirotor-drone.html | in_style=False | ass="ital">My first machine that chose to stay up — built from the frame out, mostly 3D-printed.</spa
+projects/f450-multirotor-drone.html | in_style=False | -l">Built a complete F450 quadcopter from scratch — integrating the full hardware stack (flight contr
+projects/f450-multirotor-drone.html | in_style=False | ) on top of autonomous flight logic via ArduPilot — enabling real-time face recognition and subject t
+projects/f450-multirotor-drone.html | in_style=False | l">Role</div><div class="pd-value">Lead Developer — full build, tuning &amp; vision integration</div>
+projects/f450-multirotor-drone.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka
+projects/laser-lifi-network.html | in_style=False | .com" rel="preconnect"/><title>atharveeee stories — laser-based lifi network</title><link href="https
+projects/laser-lifi-network.html | in_style=False | us-wave laser. Simulated end-to-end in OptiSystem — Q ≈ 15.8, BER ≈ 1.6×10⁻⁵⁶ at 6 m. Research at MNI
+projects/laser-lifi-network.html | in_style=False | us-wave laser. Simulated end-to-end in OptiSystem — Q ≈ 15.8, BER ≈ 1.6×10⁻⁵⁶ at 6 m. Research at MNI
+projects/laser-lifi-network.html | in_style=False | us-wave laser. Simulated end-to-end in OptiSystem — Q ≈ 15.8, BER ≈ 1.6×10⁻⁵⁶ at 6 m. Research at MNI
+projects/laser-lifi-network.html | in_style=False | us-wave laser. Simulated end-to-end in OptiSystem — Q ≈ 15.8, BER ≈ 1.6×10⁻⁵⁶ at 6 m. Research at MNI
+projects/laser-lifi-network.html | in_style=True | e      and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {     ba
+projects/laser-lifi-network.html | in_style=True | border-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      Refere
+projects/laser-lifi-network.html | in_style=True | /* === Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @media s
+projects/laser-lifi-network.html | in_style=True |       which blows each menu row up to ~420px here — pin it back to auto.        text-transform keeps 
+projects/laser-lifi-network.html | in_style=True | ><style id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */ .soc
+projects/laser-lifi-network.html | in_style=False |     // Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), dat ka

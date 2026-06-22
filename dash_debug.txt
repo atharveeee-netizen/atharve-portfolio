@@ -1,0 +1,21 @@
+  and never looks "slim". */    /* Bar shell — match the reference exactly */   .navbar {  
+---
+r-right: 0 !important;   }    /* Center menu — EXACT reference button sizing, fluid.      R
+---
+= Mobile full-screen nav (pieterkoopt-style) — injected by apply_mobile_nav.py === */   @me
+---
+ which blows each menu row up to ~420px here — pin it back to auto.        text-transform k
+---
+le id="social-roll-css"> /* Social icon roll — same easing/duration as the nav char-roll */
+---
+bout hero: image full-bleed in its container — strip the painting frame (mat/border/shadow)
+---
+,    so a fixed offset would show a real gap — keep plain top-alignment there. */ @media (m
+---
+ll-bleed black layer that ships at opacity:0 — enable it.    Drop it to z-index:1 (like .ah
+---
+t the verse image bleed full across the band — strip the painting-frame (mat/border/shadow/
+---
+et the bird image bleed full across the band — strip the painting-frame (mat/border/shadow/
+---
+/ Onze eigen "is het nu aan het spelen" vlag — niet vertrouwen op   // bgSound.playing(), d
