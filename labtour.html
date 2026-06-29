@@ -933,6 +933,19 @@ function initWhatsAppModal() {
     linkEl.setAttribute('target', '_blank');
   });
   
+  // On touch devices (phones/tablets), tapping any WhatsApp button opens the
+  // WhatsApp app straight to the chat, instead of showing the desktop QR popup.
+  var isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+  if (isTouchDevice) {
+    document.querySelectorAll('[data-whatsapp-modal-trigger]').forEach(trigger => {
+      trigger.style.cursor = 'pointer';
+      trigger.addEventListener('click', event => {
+        event.preventDefault();
+        window.location.href = url;
+      });
+    });
+  }
+
   // Toggle open/close the modal
   document.querySelectorAll('[data-whatsapp-modal-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
