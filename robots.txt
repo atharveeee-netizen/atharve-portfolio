@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://atharveeee.netlify.app/sitemap.xml
+Sitemap: https://atharveeee.vercel.app/sitemap.xml

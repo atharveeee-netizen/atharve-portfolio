@@ -1,0 +1,11 @@
+node_modules
+.git
+dist
+*.log
+.gstack
+.netlify
+dash_debug.txt
+dash_debug2.txt
+COPY_CHANGELOG.md
+vite.config.js
+package-lock.json
