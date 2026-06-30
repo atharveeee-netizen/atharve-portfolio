@@ -1004,6 +1004,16 @@ function initWhatsAppModal() {
         window.location.href = url;
       });
     });
+    // The floating GSAP popup's WhatsApp icon (.popup-whatsapp) only carries
+    // [data-whatsapp-modal-toggle], not [data-whatsapp-modal-trigger], so the
+    // handler above never reaches it -- it would otherwise toggle a QR modal
+    // that's hidden on touch devices, i.e. tapping it would do nothing.
+    document.querySelectorAll('[data-whatsapp-modal-toggle]').forEach(toggle => {
+      toggle.addEventListener('click', event => {
+        event.preventDefault();
+        window.location.href = url;
+      });
+    });
   }
 
   // Toggle open/close the modal
