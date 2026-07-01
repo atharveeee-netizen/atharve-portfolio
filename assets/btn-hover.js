@@ -1,7 +1,7 @@
 /* ============================================================
-   PIETERKOOPT BUTTON HOVER - cloned for atharveeee, v2 (clean)
+   BUTTON HOVER - v2 (clean)
    ------------------------------------------------------------
-   Faithfully reproduces pieterkoopt.nl's CTA hover:
+   CTA hover effect:
 
      1. per-character text ROLL  (each letter lifts out, a clone
         rolls up into its place, staggered left -> right)
@@ -9,10 +9,8 @@
         the second arrow enters from the left)
      3. subtle background FILL   (a soft wipe rises from the bottom)
 
-   Timing is REFERENCE-FAITHFUL and matches the template's native
-   inline hover exactly: ease cubic-bezier(.16,1,.3,1), .6s duration,
-   .01s per-char stagger. (An earlier draft used .625,.05,0,1 / .5s /
-   .02s, which did not match pieterkoopt.)
+   Timing matches the template's native inline hover exactly:
+   ease cubic-bezier(.16,1,.3,1), .6s duration, .01s per-char stagger.
 
    WHY v2 EXISTS (the regression this fixes):
    The page ALSO ships an inline hover system (initButtonCharacterStagger
@@ -41,8 +39,8 @@
   /* honour the same reduced-motion contract the rest of the site uses */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  // Reference-faithful timing (matches the template's native inline hover
-  // and pieterkoopt.nl): ease cubic-bezier(.16,1,.3,1), .6s, .01s stagger.
+  // Timing matches the template's native inline hover:
+  // ease cubic-bezier(.16,1,.3,1), .6s, .01s stagger.
   var EASE = 'cubic-bezier(.16,1,.3,1)';
 
   /* ---------- 1. inject the stylesheet (once) ---------- */

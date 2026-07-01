@@ -46,9 +46,9 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
 
 /* Projects gallery final CTA ("Want to build something? / It starts here").
    Frame the panel like a hanging artwork on the wall — same black/gilt
-   molding as the gallery paintings, with a dark olive canvas interior,
-   matching the pieterkoopt /stories reference. Layout (aspect 3/4, flex
-   column, padding) is left to the existing .gs-cta_frame rule. */
+   molding as the gallery paintings, with a dark olive canvas interior.
+   Layout (aspect 3/4, flex column, padding) is left to the existing
+   .gs-cta_frame rule. */
 .gs-cta_frame {
     background: linear-gradient(160deg, #2a2d1c 0%, #1e2013 50%, #1a1c10 100%);
     box-shadow:
@@ -89,7 +89,7 @@ html{-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;font-family:sans-se
     }
 }
 
-/* === NAVBAR SPACING - EXACT CLONE FROM PIETER KOOPT REFERENCE === */
+/* === NAVBAR SPACING === */
 
 /* Navbar bar: flex layout, 4.5em tall */
 .navbar {
