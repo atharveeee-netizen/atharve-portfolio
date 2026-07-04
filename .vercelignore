@@ -9,3 +9,4 @@ dash_debug2.txt
 COPY_CHANGELOG.md
 vite.config.js
 package-lock.json
+README.md
