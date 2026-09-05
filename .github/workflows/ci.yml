@@ -1,0 +1,73 @@
+name: Portfolio CI & Documentation Verification
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: |
+        npm install --ignore-scripts
+
+    - name: Verify Vite Build & Multi-Page Output
+      run: |
+        npx vite build
+
+    - name: Run Static Portfolio Verification Tests
+      run: |
+        npm test
+
+    - name: Validate Zero En-Dashes and Em-Dashes in Documentation
+      run: |
+        python3 -c "
+        import os, sys
+        forbidden = ['\u2013', '\u2014']
+        violations = []
+        for root, _, files in os.walk('.'):
+            if '.git' in root or 'node_modules' in root or 'dist' in root:
+                continue
+            for f in files:
+                if f.endswith(('.md', '.yml', '.yaml', '.cff')):
+                    path = os.path.join(root, f)
+                    with open(path, 'r', encoding='utf-8') as fp:
+                        content = fp.read()
+                        for char in forbidden:
+                            if char in content:
+                                violations.append((path, repr(char)))
+        if violations:
+            print('Detected forbidden en-dash or em-dash characters:')
+            for v in violations:
+                print(f'  {v[0]}: {v[1]}')
+            sys.exit(1)
+        print('All markdown and YAML documentation verified clean (0 en-dashes, 0 em-dashes).')
+        "
+
+    - name: Verify All Embedded README Image Paths Exist
+      run: |
+        python3 -c "
+        import re, os, sys
+        with open('README.md', 'r', encoding='utf-8') as f:
+            text = f.read()
+        imgs = re.findall(r'src=\"([^\"]+)\"', text)
+        missing = [img for img in imgs if not os.path.exists(img) and not img.startswith('http')]
+        if missing:
+            print('Missing embedded image paths in README.md:')
+            for m in missing:
+                print(f'  {m}')
+            sys.exit(1)
+        print(f'Verified all {len(imgs)} embedded images exist on disk.')
+        "

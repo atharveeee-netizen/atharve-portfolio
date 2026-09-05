@@ -1,0 +1,38 @@
+name: Feature Request
+description: Propose an interactive feature, case study enhancement, or animation improvement
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have an idea to make Atharve's portfolio even sharper? Share your thoughts below.
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Area
+      description: What part of the portfolio does this suggestion touch?
+      options:
+        - "Visual Design & Dark Mode Aesthetic"
+        - "GSAP Motion & Scroll Animations"
+        - "Audio Soundscape & Sonic Branding"
+        - "Hardware Case Studies & Schematics"
+        - "Performance & Asset Optimization"
+        - "Accessibility & SEO"
+        - "Other"
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: Proposed Feature or Improvement
+      description: Describe what you would like to see added or enhanced.
+    validations:
+      required: true
+  - type: textarea
+    id: value
+    attributes:
+      label: Value & Rationale
+      description: Why would this improve the storytelling or user experience for judges and recruiters?
+    validations:
+      required: false

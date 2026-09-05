@@ -1,0 +1,57 @@
+name: Bug Report
+description: Report a broken link, visual layout defect, or animation issue
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting an issue on Atharve's portfolio website!
+  - type: input
+    id: page-url
+    attributes:
+      label: Affected Page URL or Document
+      description: Which page or route has the issue?
+      placeholder: "e.g. /projects/f450-multirotor-drone, /labtour, index.html"
+    validations:
+      required: true
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser & Device
+      description: What browser and device did you use to view the site?
+      options:
+        - "Google Chrome (Desktop)"
+        - "Mozilla Firefox (Desktop)"
+        - "Apple Safari (Desktop)"
+        - "Apple Safari (iOS / iPhone)"
+        - "Google Chrome (Android)"
+        - "Microsoft Edge (Desktop)"
+        - "Other"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of the Problem
+      description: What went wrong or looks misaligned?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this issue?
+      placeholder: |
+        1. Open https://atharveeee.vercel.app/projects
+        2. Scroll down to...
+        3. Click on...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen instead?
+    validations:
+      required: true

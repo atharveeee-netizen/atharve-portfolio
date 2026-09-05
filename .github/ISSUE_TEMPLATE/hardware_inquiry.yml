@@ -1,0 +1,46 @@
+name: Hardware Collaboration & Research Inquiry
+description: Inquire about UAV flight systems, LiFi communication, Altium PCB design, or research partnerships
+title: "[INQUIRY]: "
+labels: ["collaboration", "hardware"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Interested in collaborating on hardware prototypes, UAV flight platforms, or optical research with Atharve Dahima?
+  - type: input
+    id: organization
+    attributes:
+      label: Organization / University / Lab
+      description: Who are you representing?
+      placeholder: "e.g. Research Lab, Defense Tech Startup, University"
+    validations:
+      required: true
+  - type: dropdown
+    id: domain
+    attributes:
+      label: Technical Domain
+      description: Which area of Atharve's work is relevant to your inquiry?
+      options:
+        - "Autonomous Multirotor UAVs & ArduPilot Flight Control"
+        - "Laser-Based LiFi & Free-Space Optical Communications"
+        - "Altium Multi-Layer High-Speed PCB Layout"
+        - "Edge Computer Vision & AI Drone Tracking"
+        - "Cryogenic Electronics & Silicon Photonic Quantum Computing"
+        - "General Engineering Collaboration"
+    validations:
+      required: true
+  - type: textarea
+    id: brief
+    attributes:
+      label: Project Brief or Problem Statement
+      description: Describe the project, engineering challenge, or research problem.
+    validations:
+      required: true
+  - type: input
+    id: contact
+    attributes:
+      label: Contact Email or WhatsApp
+      description: Where can Atharve reply to your brief?
+      placeholder: "yourname@organization.com"
+    validations:
+      required: true
